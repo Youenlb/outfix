@@ -1,10 +1,20 @@
+import { useState } from "react";
 import "./App.css";
-import OutfitManager from "./OutfitManager";
-
+// COMPONENTS
+import Header from "./components/Header";
+// TS
+import type { PageName } from "./constants/global";
+import { Pages } from "./constants/global";
 function App() {
+  const [pageName, setPageName] = useState<PageName>(Pages.OUTFITS); // état global de navigation
+  console.log("La page actuelle est :", pageName);
   return (
     <>
-      <OutfitManager />
+      <Header pageName={pageName} onNavigate={setPageName} />
+      {/* <OutfitManager /> */}
+      {/*pageName === Pages.CLOTHES && <PageClothes />*/}
+      {/*pageName === Pages.WISHLIST && <PageWishlist />*/}
+      {/*pageName === Pages.OUTFITS && <PageOutfits />*/}
     </>
   );
 }
