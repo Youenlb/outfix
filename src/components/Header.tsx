@@ -40,6 +40,7 @@ const Header = ({ pageName, onNavigate }: HeaderProps) => {
           </div>
 
           <nav className="space-y-3">
+            {/* ITEM CLOTHES */}
             <button
               onClick={() => navigateTo(Pages.CLOTHES)}
               className={`w-full text-left p-4 rounded-lg transition-colors flex items-center gap-3 ${
@@ -51,6 +52,7 @@ const Header = ({ pageName, onNavigate }: HeaderProps) => {
               <Shirt size={20} />
               Mes Vêtements
             </button>
+            {/* ITEM WISHLIST */}
             <button
               onClick={() => navigateTo(Pages.WISHLIST)}
               className={`w-full text-left p-4 rounded-lg transition-colors flex items-center gap-3 ${
@@ -62,6 +64,7 @@ const Header = ({ pageName, onNavigate }: HeaderProps) => {
               <ShoppingCart size={20} />
               Wishlist
             </button>
+            {/* ITEM OUTFITS */}
             <button
               onClick={() => navigateTo(Pages.OUTFITS)}
               className={`w-full text-left p-4 rounded-lg transition-colors flex items-center gap-3 ${
@@ -87,7 +90,7 @@ const Header = ({ pageName, onNavigate }: HeaderProps) => {
 
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 flex justify-start items-center">
           <button
             onClick={() => setIsMenuOpen(true)}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"

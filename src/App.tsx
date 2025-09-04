@@ -10,11 +10,13 @@ function App() {
   console.log("La page actuelle est :", pageName);
   return (
     <>
-      <Header pageName={pageName} onNavigate={setPageName} />
-      {/* <OutfitManager /> */}
-      {/*pageName === Pages.CLOTHES && <PageClothes />*/}
-      {/*pageName === Pages.WISHLIST && <PageWishlist />*/}
-      {/*pageName === Pages.OUTFITS && <PageOutfits />*/}
+      <div>
+        <Header pageName={pageName} onNavigate={setPageName} />
+        {/* <OutfitManager /> */}
+        {/*pageName === Pages.CLOTHES && <PageClothes />*/}
+        {/*pageName === Pages.WISHLIST && <PageWishlist />*/}
+        {/*pageName === Pages.OUTFITS && <PageOutfits />*/}
+      </div>
     </>
   );
 }
