@@ -1,7 +1,8 @@
-import { Edit, Plus, Save, Trash2, X } from "lucide-react";
+import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
 
 // Types de vêtements disponibles
+// TODO : Ajoute dans le fichier de constante global.ts en tant qu'enum
 const clothingTypes = [
   "Haut",
   "Bas",
@@ -14,45 +15,7 @@ const clothingTypes = [
 
 const OutfitManager = () => {
   const [currentPage, setCurrentPage] = useState("clothes");
-  const [clothes, setClothes] = useState([
-    {
-      id: 1,
-      name: "Jean slim bleu",
-      type: "Bas",
-      images: [
-        "https://via.placeholder.com/300x400/4169E1/white?text=Jean+Slim",
-      ],
-      link: "https://example.com/jean",
-      owned: true,
-      brand: "Levi's",
-      color: "Bleu",
-      size: "M",
-    },
-    {
-      id: 2,
-      name: "T-shirt blanc basique",
-      type: "Haut",
-      images: ["https://via.placeholder.com/300x400/white/black?text=T-shirt"],
-      link: "https://example.com/tshirt",
-      owned: true,
-      brand: "Uniqlo",
-      color: "Blanc",
-      size: "M",
-    },
-    {
-      id: 3,
-      name: "Sneakers Air Max",
-      type: "Chaussures",
-      images: [
-        "https://via.placeholder.com/300x400/FF6347/white?text=Sneakers",
-      ],
-      link: "https://example.com/sneakers",
-      owned: false,
-      brand: "Nike",
-      color: "Rouge",
-      size: "42",
-    },
-  ]);
+  const [clothes, setClothes] = useState([]);
   const [outfits, setOutfits] = useState([]);
   const [selectedType, setSelectedType] = useState("all");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -76,6 +39,8 @@ const OutfitManager = () => {
   };
 
   // Filtrage des vêtements
+  // TODO : Faire en sorte que cette fonction soit un comportement propre à close il y a un truc ou le mettre mais je ne sais plus quoi
+  // Voir dans les projets précédents
   const getFilteredClothes = (ownedFilter = null) => {
     let filtered = clothes;
 
@@ -171,66 +136,6 @@ const OutfitManager = () => {
         items: editingItem.items.filter((id) => id !== itemId),
       });
     }
-  };
-
-  // Components
-  const ClothingCard = ({ item, showActions = true }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    return (
-      <div
-        className="relative bg-white rounded-lg shadow-md overflow-hidden group"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="aspect-[3/4] overflow-hidden">
-          <img
-            src={
-              item.images[0] ||
-              "https://via.placeholder.com/300x400/gray/white?text=No+Image"
-            }
-            alt={item.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {!item.owned && (
-          <div className="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs">
-            Wishlist
-          </div>
-        )}
-
-        <div className="p-4">
-          <h3 className="font-semibold text-gray-800 truncate">{item.name}</h3>
-          <p className="text-sm text-gray-600">
-            {item.type} - {item.brand}
-          </p>
-          <p className="text-xs text-gray-500">
-            {item.color} • {item.size}
-          </p>
-        </div>
-
-        {showActions && isHovered && (
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-3">
-            <button
-              onClick={() => {
-                setEditingItem(item);
-                setCurrentPage("edit");
-              }}
-              className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full transition-colors"
-            >
-              <Edit size={16} />
-            </button>
-            <button
-              onClick={() => confirmDelete(item)}
-              className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transition-colors"
-            >
-              <Trash2 size={16} />
-            </button>
-          </div>
-        )}
-      </div>
-    );
   };
 
   const ItemForm = ({ item, setItem, onSubmit, title }) => (
@@ -369,48 +274,6 @@ const OutfitManager = () => {
   // Pages
   const renderPage = () => {
     switch (currentPage) {
-      case "clothes":
-        return (
-          <div>
-            <div className="flex justify-between items-center mb-6">
-              <h1 className="text-3xl font-bold text-gray-800">
-                Mes Vêtements
-              </h1>
-              <button
-                onClick={() => {
-                  setNewItem({ ...newItem, owned: true });
-                  setCurrentPage("add");
-                }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
-              >
-                <Plus size={16} />
-                Ajouter
-              </button>
-            </div>
-
-            <div className="mb-6">
-              <select
-                value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value)}
-                className="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">Tous les types</option>
-                {clothingTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {getFilteredClothes(true).map((item) => (
-                <ClothingCard key={item.id} item={item} />
-              ))}
-            </div>
-          </div>
-        );
-
       case "wishlist":
         return (
           <div>

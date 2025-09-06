@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "name": "Jean slim bleu",
+    "type": "Bas",
+    "images": [
+      "https://via.placeholder.com/300x400/4169E1/white?text=Jean+Slim"
+    ],
+    "link": "https://example.com/jean",
+    "owned": true,
+    "brand": "Levi's",
+    "color": "Bleu",
+    "size": "M"
+  },
+  {
+    "id": 2,
+    "name": "T-shirt blanc basique",
+    "type": "Haut",
+    "images": ["https://via.placeholder.com/300x400/white/black?text=T-shirt"],
+    "link": "https://example.com/tshirt",
+    "owned": true,
+    "brand": "Uniqlo",
+    "color": "Blanc",
+    "size": "M"
+  },
+  {
+    "id": 3,
+    "name": "Sneakers Air Max",
+    "type": "Chaussures",
+    "images": [
+      "https://via.placeholder.com/300x400/FF6347/white?text=Sneakers"
+    ],
+    "link": "https://example.com/sneakers",
+    "owned": false,
+    "brand": "Nike",
+    "color": "Rouge",
+    "size": "42"
+  }
+]
