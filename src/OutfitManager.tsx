@@ -1,18 +1,6 @@
 import { Plus, Save, X } from "lucide-react";
 import { useState } from "react";
 
-// Types de vêtements disponibles
-// TODO : Ajoute dans le fichier de constante global.ts en tant qu'enum
-const clothingTypes = [
-  "Haut",
-  "Bas",
-  "Chaussures",
-  "Veste",
-  "Accessoire",
-  "Sous-vêtement",
-  "Autre",
-];
-
 const OutfitManager = () => {
   const [currentPage, setCurrentPage] = useState("clothes");
   const [clothes, setClothes] = useState([]);
@@ -21,22 +9,6 @@ const OutfitManager = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
   const [editingItem, setEditingItem] = useState(null);
-  const [newItem, setNewItem] = useState({
-    name: "",
-    type: "Haut",
-    images: [],
-    link: "",
-    owned: true,
-    brand: "",
-    color: "",
-    size: "",
-  });
-
-  // Navigation
-  const navigateTo = (page) => {
-    setCurrentPage(page);
-    setEditingItem(null);
-  };
 
   // Filtrage des vêtements
   // TODO : Faire en sorte que cette fonction soit un comportement propre à close il y a un truc ou le mettre mais je ne sais plus quoi
@@ -56,6 +28,7 @@ const OutfitManager = () => {
   };
 
   // Gestion des items
+
   const handleAddItem = () => {
     const id = Date.now();
     setClothes([...clothes, { ...newItem, id }]);

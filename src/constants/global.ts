@@ -1,15 +1,29 @@
 // pages.ts
+
+// nom de page
 export const Pages = {
   CLOTHES: "clothes",
   WISHLIST: "wishlist",
   OUTFITS: "outfits",
+  createClothe: "createClothe",
 } as const;
 
 export type PageName = (typeof Pages)[keyof typeof Pages];
 
-// TODO : Mettre constantes pour types de vêtements
+// type de vêtement
+export const ClotheType = {
+  TOP: "Haut",
+  BOTTOM: "Bas",
+  SHOES: "Chaussures",
+  JACKET: "Veste",
+  ACCESSORY: "Accessoire",
+  UNDERWEAR: "Sous-vêtement",
+  OTHER: "Autre",
+} as const;
 
-// TODO : Mettre constante squellette d'un item non défini
+export type ClotheTypeName = (typeof ClotheType)[keyof typeof ClotheType];
+
+export type ClothingFilter = ClotheTypeName | "all";
 export const emptyClothe = {
   id: undefined,
   name: "",

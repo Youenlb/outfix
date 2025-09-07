@@ -6,16 +6,30 @@ import Header from "./components/Header";
 import Clothes from "./pages/Clothes";
 // TS
 import type { PageName } from "./constants/global";
-import { Pages } from "./constants/global";
+import { Pages, emptyClothe } from "./constants/global";
+import type { Clothe } from "./types/Clothe";
+
 function App() {
-  const [pageName, setPageName] = useState<PageName>(Pages.OUTFITS); // état global de navigation
+  // Contient l'enum de la page courante
+  const [pageName, setPageName] = useState<PageName>(Pages.OUTFITS);
+  const [consultedClothe, setConsultedClothe] = useState<Clothe | null>(null);
   console.log("La page actuelle est :", pageName);
+
+  function handleAddClothe() {
+    // MAJ valeur vêtement consulté
+    setConsultedClothe({ ...emptyClothe, owned: true });
+
+    // MAJ valeur de la page courante
+    setPageName(Pages.createClothe);
+  }
   return (
     <>
       <div>
         <Header pageName={pageName} onNavigate={setPageName} />
         {/* <OutfitManager /> */}
-        {pageName === Pages.CLOTHES && <Clothes />}
+        {pageName === Pages.CLOTHES && (
+          <Clothes onAddClothe={handleAddClothe} />
+        )}
         {/*pageName === Pages.WISHLIST && <PageWishlist />*/}
         {/*pageName === Pages.OUTFITS && <PageOutfits />*/}
       </div>
