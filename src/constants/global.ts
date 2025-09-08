@@ -6,6 +6,7 @@ export const Pages = {
   WISHLIST: "wishlist",
   OUTFITS: "outfits",
   createClothe: "createClothe",
+  editClothe: "editClothe",
 } as const;
 
 export type PageName = (typeof Pages)[keyof typeof Pages];

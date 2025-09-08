@@ -13,19 +13,6 @@ const OutfitManager = () => {
   // Filtrage des vêtements
   // TODO : Faire en sorte que cette fonction soit un comportement propre à close il y a un truc ou le mettre mais je ne sais plus quoi
   // Voir dans les projets précédents
-  const getFilteredClothes = (ownedFilter = null) => {
-    let filtered = clothes;
-
-    if (ownedFilter !== null) {
-      filtered = filtered.filter((item) => item.owned === ownedFilter);
-    }
-
-    if (selectedType !== "all") {
-      filtered = filtered.filter((item) => item.type === selectedType);
-    }
-
-    return filtered;
-  };
 
   // Gestion des items
 
@@ -53,22 +40,6 @@ const OutfitManager = () => {
     navigateTo("clothes");
   };
 
-  const handleDeleteItem = () => {
-    setClothes(clothes.filter((item) => item.id !== itemToDelete.id));
-    setOutfits(
-      outfits.map((outfit) => ({
-        ...outfit,
-        items: outfit.items.filter((id) => id !== itemToDelete.id),
-      }))
-    );
-    setShowDeleteModal(false);
-    setItemToDelete(null);
-  };
-
-  const confirmDelete = (item) => {
-    setItemToDelete(item);
-    setShowDeleteModal(true);
-  };
 
   // Gestion des outfits
   const handleCreateOutfit = () => {
@@ -460,35 +431,6 @@ const OutfitManager = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Main content */}
       <main className="p-6">{renderPage()}</main>
-
-      {/* Modal de suppression */}
-      {showDeleteModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold mb-4">
-              Confirmer la suppression
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Êtes-vous sûr de vouloir supprimer "{itemToDelete?.name}" ? Cette
-              action est irréversible.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={handleDeleteItem}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors"
-              >
-                Supprimer
-              </button>
-              <button
-                onClick={() => setShowDeleteModal(false)}
-                className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors"
-              >
-                Annuler
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

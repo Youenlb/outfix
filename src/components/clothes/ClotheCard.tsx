@@ -1,15 +1,17 @@
 import { useState } from "react";
-/*
+import { Edit, Trash2 } from "lucide-react";
+import type { Clothe } from "../../types/Clothe";
 type ClothesProps = {
-  pageName: PageName;
-  onNavigate: (pageName: PageName) => void;
+  clothe: Clothe;
+  onEditClick: (clothe: Clothe) => void;
+  onDeleteClick: (clothe: Clothe) => void;
 };
-*/
-const ClotheCard = ({ item, showActions = true }) => {
-  const [isHovered, setIsHovered] = useState(false);
 
+const ClotheCard = ({ clothe, onEditClick, onDeleteClick }: ClothesProps) => {
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div
+    <input
+      type="button"
       className="relative bg-white rounded-lg shadow-md overflow-hidden group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -17,50 +19,49 @@ const ClotheCard = ({ item, showActions = true }) => {
       <div className="aspect-[3/4] overflow-hidden">
         <img
           src={
-            item.images[0] ||
+            clothe.images[0] ||
             "https://via.placeholder.com/300x400/gray/white?text=No+Image"
           }
-          alt={item.name}
+          alt={clothe.name}
           className="w-full h-full object-cover"
         />
       </div>
 
-      {!item.owned && (
+      {!clothe.owned && (
         <div className="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs">
           Wishlist
         </div>
       )}
 
       <div className="p-4">
-        <h3 className="font-semibold text-gray-800 truncate">{item.name}</h3>
+        <h3 className="font-semibold text-gray-800 truncate">{clothe.name}</h3>
         <p className="text-sm text-gray-600">
-          {item.type} - {item.brand}
+          {clothe.type} - {clothe.brand}
         </p>
         <p className="text-xs text-gray-500">
-          {item.color} • {item.size}
+          {clothe.color} • {clothe.size}
         </p>
       </div>
-
-      {showActions && isHovered && (
+      {/*TODO : voir pourquoi le showAction est mis aussi (je vais peut-être le comprendre plus tard)*/}
+      {isHovered && (
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center gap-3">
           <button
             onClick={() => {
-              setEditingItem(item);
-              setCurrentPage("edit");
+              onEditClick(clothe);
             }}
             className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full transition-colors"
           >
             <Edit size={16} />
           </button>
           <button
-            onClick={() => confirmDelete(item)}
+            onClick={() => onDeleteClick(clothe)}
             className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transition-colors"
           >
             <Trash2 size={16} />
           </button>
         </div>
       )}
-    </div>
+    </input>
   );
 };
 
