@@ -24,7 +24,7 @@ export const ClotheType = {
 
 export type ClotheTypeName = (typeof ClotheType)[keyof typeof ClotheType];
 
-export type ClothingFilter = ClotheTypeName | "all";
+export type ClothingFilter = ClotheTypeName | "All";
 export const emptyClothe = {
   id: undefined,
   name: "",

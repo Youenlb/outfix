@@ -10,8 +10,7 @@ type ClothesProps = {
 const ClotheCard = ({ clothe, onEditClick, onDeleteClick }: ClothesProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <input
-      type="button"
+    <div
       className="relative bg-white rounded-lg shadow-md overflow-hidden group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -61,7 +60,7 @@ const ClotheCard = ({ clothe, onEditClick, onDeleteClick }: ClothesProps) => {
           </button>
         </div>
       )}
-    </input>
+    </div>
   );
 };
 

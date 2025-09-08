@@ -31,7 +31,7 @@
       "https://via.placeholder.com/300x400/FF6347/white?text=Sneakers"
     ],
     "link": "https://example.com/sneakers",
-    "owned": false,
+    "owned": true,
     "brand": "Nike",
     "color": "Rouge",
     "size": "42"
