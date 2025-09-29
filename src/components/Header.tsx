@@ -89,7 +89,7 @@ const Header = ({ pageName, onNavigate }: HeaderProps) => {
       )}
 
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="w-full bg-white shadow-sm">
         <div className="px-6 py-4 flex justify-start items-center">
           <button
             onClick={() => setIsMenuOpen(true)}

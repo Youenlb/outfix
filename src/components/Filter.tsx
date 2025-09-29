@@ -14,7 +14,7 @@ const Filter = ({ selectedType, onChange }: FilterProps) => {
     ...Object.values(ClotheType),
   ];
   return (
-    <div className="mb-6">
+    <div className="m-3 mb-6 flex justify-start">
       <select
         value={selectedType}
         onChange={(e) => onChange(e.target.value as ClotheTypeName)}

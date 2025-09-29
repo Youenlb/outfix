@@ -16,14 +16,14 @@ type ClothesProps = {
 // Récupérer la liste des vêtements contenus dans le fichier JSON clothes
 const Clothes = ({ onAddClothe, onEditClick, onDeleteClick }: ClothesProps) => {
   // TODO : Voir pour la gestion de selectedType comment faire
-  const [selectedType, setSelectedType] = useState<ClothingFilter>("all");
+  const [selectedType, setSelectedType] = useState<ClothingFilter>("All");
   const clothes: Clothe[] = clothesData;
 
   const getFilteredClothes = () => {
     let filtered = clothes;
 
     // Filtrer par rapport au type
-    if (selectedType !== "all") {
+    if (selectedType !== "All") {
       filtered = filtered.filter((item) => item.type === selectedType);
     }
 
@@ -32,7 +32,7 @@ const Clothes = ({ onAddClothe, onEditClick, onDeleteClick }: ClothesProps) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center m-3 mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Mes Vêtements</h1>
         {/* Bouton Ajouter un vêtement */}
         <button
