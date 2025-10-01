@@ -1,38 +1,40 @@
 // TS
 import type { Clothe } from "../types/Clothe";
+import { Dialog, CloseButton, Button } from "@chakra-ui/react";
+// TODO : Faire un useModal ou la gestion du cancel est faite au lieu de répéter les actions
 type DeleteClotheModalProps = {
   clothe: Clothe;
   onDeleteClick: (clothe: Clothe) => void;
   onCancelClick: () => void;
+  isOpen: boolean;
 };
 // TODO : rendre ce composant plus réutilisable pour pouvoir l'uiliser pour la suppression d'un outfit aussi
-const DeleteClotheModal = ({ clothe, onDeleteClick, onCancelClick }: DeleteClotheModalProps) => {
+const DeleteClotheModal = ({ clothe, isOpen, onDeleteClick, onCancelClick }: DeleteClotheModalProps) => {
+  console.log("Function")
+  console.log(typeof(onCancelClick))
   return (
-    <div>
-        <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <h3 className="text-lg font-semibold mb-4">
-            Confirmer la suppression
-        </h3>
-        <p className="text-gray-600 mb-6">
-            Êtes-vous sûr de vouloir supprimer "{clothe?.name}" ? Cette
-            action est irréversible.
-        </p>
-        <div className="flex gap-3">
-            <button
-            onClick={() => onDeleteClick(clothe)}
-            className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors"
-            >
-            Supprimer
-            </button>
-            <button
-            onClick={() => onCancelClick()}
-            className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-lg transition-colors"
-            >
-            Annuler
-            </button>
-        </div>
-        </div>
-    </div>
+    // TODO : Voir ce que signifie onOpenChange
+    <Dialog.Root open={isOpen} onOpenChange={(newStateDialog) => !newStateDialog.open && onCancelClick()}>
+       <Dialog.Backdrop />
+       <Dialog.Positioner className="flex items-center justify-center">
+          <Dialog.Content>
+            <Dialog.Header>Confirmer la suppression</Dialog.Header>
+            <Dialog.Body>
+              Êtes-vous sûr de vouloir supprimer ce vêtement ?
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Dialog.Trigger asChild>
+                <Button onClick={() => onCancelClick()} variant="outline">Annuler</Button>
+              </Dialog.Trigger>
+              <Button colorScheme="red" onClick={() => onDeleteClick(clothe)}>Supprimer</Button>
+            </Dialog.Footer>
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="sm" />
+            </Dialog.CloseTrigger>
+          </Dialog.Content>
+       </Dialog.Positioner>
+    </Dialog.Root>
   );
+
 };
 export default DeleteClotheModal;

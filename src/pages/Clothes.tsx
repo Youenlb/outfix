@@ -1,7 +1,8 @@
 import { Plus } from "lucide-react";
-import clothesData from "../data/clothes.json";
+//import clothesData from "../data/clothes.json";
 import type { Clothe } from "../types/Clothe";
 import { useState } from "react";
+import { useClothes } from "../hooks/useClothes";
 // COMPONENTS
 import ClotheCard from "../components/clothes/ClotheCard";
 import Filter from "../components/Filter";
@@ -17,8 +18,7 @@ type ClothesProps = {
 const Clothes = ({ onAddClothe, onEditClick, onDeleteClick }: ClothesProps) => {
   // TODO : Voir pour la gestion de selectedType comment faire
   const [selectedType, setSelectedType] = useState<ClothingFilter>("All");
-  const clothes: Clothe[] = clothesData;
-
+  const { clothes } = useClothes();
   const getFilteredClothes = () => {
     let filtered = clothes;
 

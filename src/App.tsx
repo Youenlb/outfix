@@ -10,6 +10,8 @@ import type { PageName } from "./constants/global";
 import { Pages, emptyClothe } from "./constants/global";
 import type { Clothe } from "./types/Clothe";
 
+// TODO : Me rappeler l'utilité des use et en faire pour clothe et outfit ? 
+// Voir si pas une meilleur manière de faire  
 function App() {
   // Contient l'enum de la page courante
   const [pageName, setPageName] = useState<PageName>(Pages.OUTFITS);
@@ -63,7 +65,7 @@ function App() {
       {/*pageName === Pages.WISHLIST && <PageWishlist />*/}
       {/*pageName === Pages.OUTFITS && <PageOutfits />*/}
       {/*Fenêtre de suppression d'un vêtement*/}
-      {showDeleteModal && (<DeleteClotheModal clothe={deleteClothe} onDelete={handleDeleteButtonClickOfDeleteModal} onCancel={()=>setShowDeleteModal(false)}/>)}
+      <DeleteClotheModal isOpen={showDeleteModal} clothe={deleteClothe} onDeleteClick={handleDeleteButtonClickOfDeleteModal} onCancelClick={()=>setShowDeleteModal(false)}/>
     </>
   );
 }
